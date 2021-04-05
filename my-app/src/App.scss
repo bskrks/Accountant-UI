@@ -1,0 +1,16 @@
+$linearColor:linear-gradient(to right top, #485acf, #5659cf, #6359ce, #6e58cd, #7857cc, #8256cb, #8c56ca, #9555c9, #a154c8, #ad53c6, #b851c4, #c250c1);
+
+.container {
+  max-width: 992px;
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;  
+}
+.backTable{
+  background-image: $linearColor;
+  width: 90%;
+  position: absolute;
+  margin: 40px auto;
+}

@@ -1,0 +1,42 @@
+$buttonBack:rgb(89,41,227);
+$linearColor:linear-gradient(to right top, #485acf, #5659cf, #6359ce, #6e58cd, #7857cc, #8256cb, #8c56ca, #9555c9, #a154c8, #ad53c6, #b851c4, #c250c1);
+$whiteColor:#ffffff;
+$thBackColor:#362F4B;
+$oddColor:#f2f2f2;
+
+h3 {
+  color: $buttonBack;
+  font-family: Sans,sans-serif;
+  margin-bottom: 19px;
+  display: block;
+  font-size: 22px;
+  }
+.tableStyle{
+  position: relative;
+  margin:20px auto;
+  width: 90%;
+  border: none;
+  background-color: $whiteColor;
+  border-spacing: 0;
+  border-radius: 10px;
+}
+.thStyle{
+  color:$whiteColor;
+  height: 40px;
+}
+.firstRow{
+  background-color: $thBackColor;
+}
+.trStyle{
+
+}
+.tdStyle{
+  text-align: center;
+  height: 40px;
+}
+.trStyle:nth-of-type(1) {
+  background: $thBackColor;
+}
+.trStyle:nth-of-type(odd) {
+  background: $oddColor;
+}
