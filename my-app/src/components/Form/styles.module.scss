@@ -1,19 +1,30 @@
-
 $myColor: red;
 $backColor:#d9d9d9;
 $buttonColor:#ffffff;
-$buttonBack:rgb(89,41,227);
-$buttonLinear:linear-gradient(90deg, rgba(89,41,227,1) 0%, rgba(211,0,255,1) 100%);
+$thBackColor:#362F4B;
+$buttonBack:#992400;
+//$linearColor:linear-gradient(to right top, #485acf, #5659cf, #6359ce, #6e58cd, #7857cc, #8256cb, #8c56ca, #9555c9, #a154c8, #ad53c6, #b851c4, #c250c1);
+$linearColor:linear-gradient(to right top, #cc3300, #666666, #000000);
 
-h3 {
+$buttonLinear:linear-gradient(90deg, black 0%, #cc3300 100%);
+$differentButtonLinear:linear-gradient(90deg,rgba(128, 229, 255, 1) 0%,rgba(211,0,255,1) 80%, rgba(89,41,227,1) 100%);
+
+.h3Style {
   color: $buttonBack;
   font-family: Sans,sans-serif;
   margin-bottom: 19px;
   display: block;
   font-size: 22px;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
 }
 body{
-  background-color:$backColor;
+  background:$linearColor;
+  display: block;
+  margin: 8px;
 }
 .formDiv{
   display: block;
@@ -31,6 +42,7 @@ body{
   display: block;
   margin-right: 15px;
   margin-bottom: 5px;
+  cursor: default;
 }
 .iStyle{
   font: 600 14px/17px Open Sans,sans-serif;
@@ -41,6 +53,19 @@ body{
   box-sizing: border-box;             // içindeki padding değerleriyle toplamı width eder. Kutunun en uç border noktaları son olarak kabul edilir.
   padding: 5px 10px;                  // input içindeki yazının konumunu ayarlamak için
   border-radius: 5px;
+  text-align: start;
+  appearance: textfield;
+  background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+  -webkit-rtl-ordering: logical;
+  cursor: text;
+  -webkit-writing-mode: horizontal-tb !important;
+  text-rendering: auto;
+  color: -internal-light-dark(black, white);
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
 }
 .formButton{
   display: flex;
@@ -49,19 +74,25 @@ body{
   align-items: center;
 }
 .fStyle{
-  width:80%;
+  display: block;
+  border-radius: 25px;
+  width:100%;
 //  height: auto;           gerek yok
   padding-top:10px;
   margin-top: 80px;
-  padding-right: 50px;   // % değer verme px ver
-  padding-left: 50px;    // padding-left ile padding-right eşit olmalı
-  margin: 0 auto;  //olur mu?
- // margin-left: 24%;    bunun yerine bir container olup bu container'ın ortalanması gerekiyor ve formu da container içine koymamız gerekiyor.
+  padding-right: 50px;                                    // % değer verme px ver
+  padding-left: 50px;                                     // padding-left ile padding-right eşit olmalı
+  margin: 15px auto;  
+ // margin-left: 24%;                                         bunun yerine bir container olup bu container'ın ortalanması gerekiyor ve formu da container içine koymamız gerekiyor.
   background-color: $buttonColor;
+  box-sizing: border-box;                                // padding'i de genişliğin içine katar
 }
-.bStyle{
-  background: $buttonBack;
+.bStyle[type=submit] { 
+  border:none; 
   background: $buttonLinear;
+} 
+.bStyle{
+  background: $differentButtonLinear;
   margin-top: 15px;
   margin-bottom: 30px;
   width: 55%;
@@ -70,6 +101,22 @@ body{
   border-radius: 15px;
   border:none;
   font:600 17px Open Sans,sans-serif;
+  user-select: none;
+  white-space: pre;
+  align-items: flex-start;
+  box-sizing: border-box;
+  padding: 1px 6px;
+  -webkit-writing-mode: horizontal-tb !important;
+  -webkit-rtl-ordering: logical;
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: center;
+  cursor: default;
 }
 @media only screen and (max-width: 992px) {
   .form-div{

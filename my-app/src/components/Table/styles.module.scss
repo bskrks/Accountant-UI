@@ -2,7 +2,8 @@ $buttonBack:rgb(89,41,227);
 $linearColor:linear-gradient(to right top, #485acf, #5659cf, #6359ce, #6e58cd, #7857cc, #8256cb, #8c56ca, #9555c9, #a154c8, #ad53c6, #b851c4, #c250c1);
 $whiteColor:#ffffff;
 $thBackColor:#362F4B;
-$oddColor:#f2f2f2;
+$oddColor:#e6e6e6;
+$buttonLinear:linear-gradient(90deg, black 0%, #cc3300 100%);
 
 h3 {
   color: $buttonBack;
@@ -13,30 +14,56 @@ h3 {
   }
 .tableStyle{
   position: relative;
+  box-sizing: border-box;
+  display: table;
   margin:20px auto;
-  width: 90%;
+  border-collapse: separate;
+  text-indent: initial;
+  width: 100%;
   border: none;
   background-color: $whiteColor;
   border-spacing: 0;
-  border-radius: 10px;
+  overflow: hidden;
+  border-radius: 15px;
 }
 .thStyle{
   color:$whiteColor;
   height: 40px;
-}
-.firstRow{
-  background-color: $thBackColor;
+  display: table-cell;
+  vertical-align: inherit;
+  font-weight: bold;
+  text-align: -internal-center;
 }
 .trStyle{
-
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
 }
 .tdStyle{
   text-align: center;
   height: 40px;
+  display: table-cell;
+  vertical-align: inherit;
 }
-.trStyle:nth-of-type(1) {
-  background: $thBackColor;
+.theadStyle{
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+.tbodyStyle{
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+.theadStyle .trStyle:first-child{
+  background: $buttonLinear;
+}
+.theadStyle .thStyle{
+  color: white;
 }
 .trStyle:nth-of-type(odd) {
   background: $oddColor;
+}
+.trStyle:nth-of-type(even) {
+  background:$whiteColor;
 }

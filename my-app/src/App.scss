@@ -8,6 +8,9 @@ $linearColor:linear-gradient(to right top, #485acf, #5659cf, #6359ce, #6e58cd, #
   padding-left: 15px;
   padding-right: 15px;  
 }
+html {
+  line-height: 1.15;
+}
 .backTable{
   background-image: $linearColor;
   width: 90%;
