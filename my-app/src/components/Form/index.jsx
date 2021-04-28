@@ -13,9 +13,12 @@ function Form() {
     billNo:'',
     productName:'',
     amount:'',
+    recordedId:''
   });
 
-
+  const [idValue, SetIdValue] = useState({
+    id:''
+  });
 
 /*
   const getFormValues = async () => {
@@ -26,7 +29,7 @@ function Form() {
 
 */
 
-  function handleFormValuesChange(e,inputName) {  // parametresiz => switch(e.name)
+  function handleFormValuesChange(e,inputName) {        // parametresiz => switch(e.name)
 
     switch(inputName){
       case "firstName":
@@ -34,11 +37,11 @@ function Form() {
           setFormValues({
             ...formValues,
             [inputName]: e.target.value,
-          });
+        });
       }
       break;
       case "lastName":
-        if(e.target.value.match(/^[a-zA-Z]+$/)){
+        if(e.target.value.match(/^[a-zA-ZğüşöçİĞÜŞÖÇı\s]*$/)){
           setFormValues({
             ...formValues,
             [inputName]: e.target.value,
@@ -76,19 +79,36 @@ function Form() {
     }
   };
 
-  const handleSubmit = e => { 
+  const handleSubmit = async(e) => { 
+
     e.preventDefault();
-    const {productName,amount,billNo} = formValues;
+    const {firstName,lastName,email,productName,amount,billNo} = formValues;
+
     if(!formValues.email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
         alert("Invalid E-mail");
     }
     else{
+
       console.log(formValues);
-      axios.post('http://localhost:8010/bills', {
+
+      await axios.post('http://localhost:8010/users', {
+        firstName,
+        lastName ,
+        email ,
+      })
+      .then(function (response) {
+        idValue.id=response.data;
+        console.log(idValue.id);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+
+      await axios.post('http://localhost:8010/bills', {
         productName,
         amount ,
         billNo ,
-        userId :15
+        userId: idValue.id
       })
       .then(function (response) {
         console.log(response);
@@ -103,8 +123,9 @@ function Form() {
       })
       .catch(function (error) {
         console.error(error);
-      });
+      });  
     }
+
     /*
     if(formValues.billNo.indexOf(1).match(/^[a-zA-Z]+$/) && formValues.billNo.indexOf(2).match(/^[a-zA-Z]+$/)){
       if(formValues.billNo.indexOf())

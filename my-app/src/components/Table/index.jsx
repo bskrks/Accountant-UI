@@ -4,16 +4,7 @@ import styles from'./styles.module.scss';
 
 function Table(){
 
-    const [values, setValues] = useState({
-        fullName: '',
-        email: '',
-        billNo:'',
-        productName:'',
-        amount:'',
-    });
-
     const [datas,setDatas] =useState([])
-    const [userDatas,setUserDatas] =useState([])
 
     // useEffect component'in render olduğu an veya bir staste'e bağlı olduğu anda kullanılır. Tabloya sorgu atmak amacıyla kullanacağız;
 
@@ -24,6 +15,11 @@ function Table(){
         console.log(response);
         if(response.data.length > 0){
             setDatas(response.data);
+            
+            if(!response.status==200)
+            {
+                alert("Failed !!");
+            }
         }
     })
     .catch(function (error) {
@@ -54,8 +50,8 @@ return (
                     datas.length>0 && (
                         datas.map((item) => (
                             <tr className={styles.trStyle}>
-                                <td className={styles.tdStyle}>{`${item.billNo} ${item.productName}`}</td>
-                                <td className={styles.tdStyle}>1</td>
+                                <td className={styles.tdStyle}>{`${item.firstName} ${item.lastName}`}</td>
+                                <td className={styles.tdStyle}>{item.email}</td>
                                 <td className={styles.tdStyle}>{item.billNo}</td>
                                 <td className={styles.tdStyle}>{item.productName}</td>
                                 <td className={styles.tdStyle}>{item.amount}</td>
