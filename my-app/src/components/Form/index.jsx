@@ -120,6 +120,10 @@ function Form() {
           productName:'',
           amount:'',
         })
+        if(!response.status==200)
+        {
+            alert("Failed !!");
+        }
       })
       .catch(function (error) {
         console.error(error);
