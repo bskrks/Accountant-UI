@@ -35,11 +35,40 @@ useEffect(() => {
 });
 }, []);
 
+const [users, setUsers] = useState([]);
+const [bills, setBills] = useState([]);
+useEffect(() => {
+  const usersArr = [];
+  const billArr = [];
+  datas.map((mapItem,i) => {
+    
+    const billCol = { first: mapItem.billNo, second: mapItem.productName, third: mapItem.amount, fourth:mapItem.confirmed };
+//    const userCol = { first: mapItem.firstName, second: mapItem.lastName, third: mapItem.email };
+    
+    let userCol = null;
+    if (usersArr.filter((x) => x.third === mapItem.email).length === 0) {
+      userCol = {
+        first: mapItem.firstName,
+        second: mapItem.lastName,
+        third: mapItem.email,
+      };
+      usersArr.push(userCol);
+  }
+
+   // usersArr.push(userCol);
+    billArr.push(billCol);
+  });
+  setUsers(usersArr);
+  setBills(billArr);
+}, [datas]);
+
+// tüm bilgiler datas'ta
+
 
   return <Container>       
           <Form/>
-          <Table data={datas} head={userHeading}/>
-          <Table data={datas} head={billHeading}/>
+          <Table data={datas} head={userHeading} tableData={users}/>
+          <Table data={datas} head={billHeading} tableData={bills}/>
         </Container>    
 }
 export default App;
