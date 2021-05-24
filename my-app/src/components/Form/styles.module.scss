@@ -92,7 +92,6 @@ body{
   background: $buttonLinear;
 } 
 .bStyle{
-  background: $differentButtonLinear;
   margin-top: 15px;
   margin-bottom: 30px;
   width: 55%;
@@ -117,6 +116,24 @@ body{
   display: inline-block;
   text-align: center;
   cursor: default;
+}
+.spanStyle{
+  color:$buttonBack;
+}
+.pStyle{
+  font-size: 12px;
+  font-family: Garamond, serif;
+  font-weight: bold;
+  color: $buttonBack;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
 }
 @media only screen and (max-width: 992px) {
   .form-div{
