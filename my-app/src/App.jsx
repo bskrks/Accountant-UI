@@ -55,7 +55,6 @@ useEffect(() => {
       usersArr.push(userCol);
   }
 
-   // usersArr.push(userCol);
     billArr.push(billCol);
   });
   setUsers(usersArr);
