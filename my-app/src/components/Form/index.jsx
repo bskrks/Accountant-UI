@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from "axios";
 import styles from'./styles.module.scss';
+import Modals from './../Modal'
 
 function Form() {
 
@@ -12,6 +13,11 @@ function Form() {
     productName:localStorage.getItem('FormValuesLocalStorage') ? JSON.parse(localStorage.getItem('FormValuesLocalStorage')).productName : '',
     amount:localStorage.getItem('FormValuesLocalStorage') ? JSON.parse(localStorage.getItem('FormValuesLocalStorage')).amount : '',
   });
+
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+  const [selectMessage, setSelectMessage] = useState("");
+
+  const allMessages={empty:'Empty fields must be filled out !',incorrect:'Email is incorrect !',limit:'If your total amount is more than 200 then your bill confirmed value will be not confirmed.'}
 
   const [idValue, SetIdValue] = useState({
     id:''
@@ -32,7 +38,7 @@ function Form() {
       email:''
     }
   }
-
+  
   const onlyLettersAndSpace = (p) => {
     const regex = new RegExp(/^[a-zA-ZğüşöçİĞÜŞÖÇı\s]*$/); 
     return regex.test(p);
@@ -43,7 +49,7 @@ function Form() {
     return regex.test(p);
   }
 
-  function handleFormValuesChange(e,inputName) {        // parametresiz => switch(e.name)
+  function handleFormValuesChange(e,inputName) {        
     console.log(e.target.value);
     switch(inputName){
       case "firstName":
@@ -96,13 +102,7 @@ function Form() {
         });
         data.email=e.target.value;
         break;
-    }
-/*
-    const handle = {
-      data:formValues,
-      savedTime:now
-   }*/
-  //  localStorage.setItem('FormValuesLocalStorage', JSON.stringify(handle));  
+    } 
     console.log(handle);
   };
 
@@ -116,7 +116,7 @@ function Form() {
   }, [formValues]);
 
   const handleSubmit = async(e) => { 
-
+    
     const buttonTime = new Date().getTime();
     const expiry = 5000;
 
@@ -125,9 +125,6 @@ function Form() {
     const handleButton = {
       savedTime:buttonTime
    }
-   // localStorage.setItem('FormValuesLocalStorage', JSON.stringify(handleButton));
-    console.log(buttonTime);
-    console.log(timer);
 
     if(timer > expiry){
       localStorage.removeItem('FormValuesLocalStorage');
@@ -137,12 +134,13 @@ function Form() {
     const {firstName,lastName,email,productName,amount,billNo} = formValues;
    
     if(!formValues.firstName || !formValues.lastName || !formValues.email|| !formValues.productName || !formValues.billNo || !formValues.amount){
-      alert("Empty fields must be filled out");
-
+      setSelectMessage(allMessages.empty);
+      setIsErrorModalOpen(true);
     }
     else{
      if(!formValues.email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
-        alert("Invalid E-mail");
+        setSelectMessage(allMessages.incorrect);
+        setIsErrorModalOpen(true);
       }
       else{
 
@@ -186,16 +184,11 @@ function Form() {
           console.error(error);
         });  
       }
-
-      /*
-      if(formValues.billNo.indexOf(1).match(/^[a-zA-Z]+$/) && formValues.billNo.indexOf(2).match(/^[a-zA-Z]+$/)){
-        if(formValues.billNo.indexOf())
-      }*/
     }
-    
   }
-
+//<Form prop={}/>
   return (
+<>
   <form className={styles.fStyle} onSubmit={(e)=> handleSubmit(e)}>
   <h3 className={styles.h3Style}>
     PLEASE FILL THE FORM
@@ -228,10 +221,11 @@ function Form() {
     <p className={styles.pStyle}>All fields marked with * are required</p>
   </div>
   <div className={styles.formButton}>
-    
   <input className={styles.bStyle} type="submit"  value="SEND"></input>
   </div>
 </form> 
+<Modals isOpen={isErrorModalOpen} handleCloseModal={()=>setIsErrorModalOpen(false)} message={selectMessage}></Modals>
+</>
   );
 } 
 export default Form;

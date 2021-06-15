@@ -67,3 +67,11 @@ h3 {
 .trStyle:nth-of-type(even) {
   background:$whiteColor;
 }
+.tableDiv{
+  width:960px;
+}
+@media only screen and (max-width: 992px) {
+  .tableDiv{
+    overflow-x: scroll;
+  } 
+}
