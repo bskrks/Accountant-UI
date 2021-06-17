@@ -16,17 +16,17 @@ const modalStyles = {
       left                  : '50%',
       right                 : 'auto',
       bottom                : 'auto',
-      width                 : '25%',        
-      height                : '15%',
+      width                 : '30%',        
+      height                : 'auto',
       marginRight           : '-50%',
       transform             : 'translate(-50%, -50%)',
-      border                : '3px solid #992400',
+ //   border                : '3px solid #992400',
       padding               : '0',
   //  borderRadius          : '35px',
       font                  : 'bold 20px arial,serif',
       textAlign             : 'center',
-      lineHeight            : '90px',     
-      color                 : '#992400'
+      lineHeight            : '60px',     
+      color                 : '#000000'
     }
   };
   return (
@@ -35,7 +35,11 @@ const modalStyles = {
           onAfterOpen={() => afterOpenModal}
           onRequestClose={() => handleCloseModal()}
           style={modalStyles}
-        >{message}</Modal>
+        >{message}
+        <div className={styles.modalDiv}>
+        <button className={styles.closeButton} onClick={handleCloseModal}>Close</button>
+        </div>
+        </Modal>
   );
 }
 
